@@ -21,7 +21,8 @@ public class AuthFilter implements Filter {
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("JSESSIONID")) {
-                            HttpSession session = req.getSession(false);
+                        //System.out.println(cookie.getValue());
+                        HttpSession session = req.getSession(false);
                         authenticated = (session != null) && (session.getAttribute("loginName") != null);
                     }
                 }

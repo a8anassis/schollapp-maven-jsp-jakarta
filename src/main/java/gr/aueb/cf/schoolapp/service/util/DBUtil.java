@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class DBUtil {
     private static BasicDataSource ds = new BasicDataSource();
     private static Connection connection;
-
+//    private static final ThreadLocal<Connection> currentConnection = new ThreadLocal<>();
     private DBUtil() {}
 
     static {
