@@ -36,7 +36,7 @@
         <form method="POST" action="${pageContext.request.contextPath}/schoolapp/insert">
           <input name="lastname" type="text" value="${requestScope.insertedTeacher.lastname}"
                  class="insert rounded" placeholder="Last name" autofocus/><br>
-          <input name="firstname" type="text" value="${requestScope.insertedteacher.firstname}"
+          <input name="firstname" type="text" value="${requestScope.insertedTeacher.firstname}"
                  class="insert rounded" placeholder="First name" autofocus/>
           <br><br>
           <button class="search-btn rounded color-btn" type="submit">Insert</button>

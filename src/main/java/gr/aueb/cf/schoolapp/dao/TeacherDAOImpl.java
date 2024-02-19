@@ -21,10 +21,15 @@ public class TeacherDAOImpl implements ITeacherDAO {
             String lastname = teacher.getLastname();
             ps.setString(1, firstname);
             ps.setString(2, lastname);
+
+            // Anti-pattern
             DBUtil.beginTransaction();
             ps.executeUpdate();
             DBUtil.commitTransaction();
+
             ResultSet generatedKeys = ps.getGeneratedKeys();
+
+            // return auto-generated keys
             int generatedId = 0;
             if (generatedKeys.next()) {
                 generatedId = generatedKeys.getInt(1);
@@ -83,7 +88,7 @@ public class TeacherDAOImpl implements ITeacherDAO {
     @Override
     public List<Teacher> getByLastname(String lastname) throws TeacherDAOException {
         String sql = "SELECT * FROM TEACHERS WHERE LASTNAME LIKE ?";
-        List<Teacher> teachers = new ArrayList<>();
+        List<Teacher> teachers = new ArrayList<>(); // size == 0
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);
@@ -100,7 +105,6 @@ public class TeacherDAOImpl implements ITeacherDAO {
             e1.printStackTrace();
             throw new TeacherDAOException("SQL Error in get teacher with lastname: " + lastname);
         }
-
         return teachers;
     }
 

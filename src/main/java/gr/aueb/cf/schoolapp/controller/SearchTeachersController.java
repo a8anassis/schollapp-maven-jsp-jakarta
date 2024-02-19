@@ -35,7 +35,7 @@ public class SearchTeachersController extends HttpServlet {
         String message = "";
         try {
             List<Teacher> teachers = teacherService.getTeachersByLastname(lastname);
-            if (teachers.isEmpty()) {
+            if (teachers.size() == 0) {
                 request.setAttribute("teachersNotFound", true);
                 request.getRequestDispatcher("/schoolapp/menu")
                         .forward(request, response);

@@ -51,7 +51,7 @@ public class UpdateTeacherController extends HttpServlet {
 				String firstnameMessage = (errors.get("firstname") != null) ? "Firstname: " + errors.get("firstname") : "";
 				String lastnameMessage = (errors.get("lastname") != null) ? "Lastname: " + errors.get("lastname") : "";
 					request.setAttribute("error", firstnameMessage + lastnameMessage);
-					request.getRequestDispatcher("/school/static/templates/teachersmenu.jsp")
+					request.getRequestDispatcher("/school/static/templates/teacherupdate.jsp")
 							.forward(request, response);
 				}
 

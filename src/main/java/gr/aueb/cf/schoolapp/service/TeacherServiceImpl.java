@@ -74,11 +74,12 @@ public class TeacherServiceImpl implements ITeacherService {
 
         try {
             teachers = teacherDAO.getByLastname(lastname);
-            return teachers;
+            //return teachers;
         } catch (TeacherDAOException e) {
             e.printStackTrace();
             throw e;
         }
+        return teachers;
     }
 
     @Override

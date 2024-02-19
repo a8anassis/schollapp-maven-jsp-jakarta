@@ -14,6 +14,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -42,7 +44,8 @@ public class InsertTeacherController extends HttpServlet {
 
         try {
             Map<String, String> errors = TeacherValidator.validate(teacherInsertDTO);
-            if (!errors.isEmpty()) {
+
+            if (!(errors.isEmpty())) {
                 String firstnameMessage = (errors.get("firstname") != null) ? "Firstname: " + errors.get("firstname") : "";
                 String lastnameMessage = (errors.get("lastname") != null) ? "Lastname: " + errors.get("lastname") : "";
                 request.setAttribute("error", firstnameMessage + " " + lastnameMessage);
@@ -52,6 +55,9 @@ public class InsertTeacherController extends HttpServlet {
 
             Teacher teacher = teacherService.insertTeacher(teacherInsertDTO);
             request.setAttribute("insertedTeacher", teacher);
+
+//            Teacher teacher = teacherService.insertTeacher(teacherInsertDTO);
+//            request.setAttribute("insertedTeacher", teacher);
             request.getRequestDispatcher("/school/static/templates/teacherInserted.jsp")
                     .forward(request, response);
         } catch (TeacherDAOException e) {
